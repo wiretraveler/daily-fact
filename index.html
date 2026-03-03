@@ -307,7 +307,10 @@
 
     function getFactIndex() {
       const now = new Date();
-      const day = now.getFullYear() * 1000 + now.getMonth() * 100 + now.getDate();
+      const y = now.getFullYear();
+      const m = String(now.getMonth() + 1).padStart(2, "0");
+      const d = String(now.getDate()).padStart(2, "0");
+      const day = Number(`${y}${m}${d}`);
       const slot = now.getHours() < 12 ? 0 : 1; // Two time slots: AM and PM
       const seed = day * 2 + slot;
       return seed % facts.length;
